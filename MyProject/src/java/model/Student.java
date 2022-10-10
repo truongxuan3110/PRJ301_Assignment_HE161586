@@ -12,8 +12,8 @@ import java.sql.Date;
  */
 public class Student {
     private String sid;
-    private String name;
-    private boolean gender;
+    private String sname;
+    private boolean sgender;
     private Date sdob;
     private String sadd;
     private int sphone;
@@ -31,19 +31,19 @@ public class Student {
     }
 
     public String getName() {
-        return name;
+        return sname;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setName(String sname) {
+        this.sname = sname;
     }
 
     public boolean isGender() {
-        return gender;
+        return sgender;
     }
 
-    public void setGender(boolean gender) {
-        this.gender = gender;
+    public void setGender(boolean sgender) {
+        this.sgender = sgender;
     }
 
     public Date getSdob() {
