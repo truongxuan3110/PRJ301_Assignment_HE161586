@@ -4,40 +4,39 @@
  */
 package model;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Trường Xuân
  */
 public class Room {
-    private String rid;
-    private String department;
-    private int floor;
+    private int id;
+    private String name;
+    private ArrayList<Session> sessions = new ArrayList<>();
 
-    public Room() {
+    public int getId() {
+        return id;
     }
 
-    public String getRid() {
-        return rid;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public void setRid(String rid) {
-        this.rid = rid;
+    public String getName() {
+        return name;
     }
 
-    public String getDepartment() {
-        return department;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public void setDepartment(String department) {
-        this.department = department;
+    public ArrayList<Session> getSessions() {
+        return sessions;
     }
 
-    public int getFloor() {
-        return floor;
+    public void setSessions(ArrayList<Session> sessions) {
+        this.sessions = sessions;
     }
 
-    public void setFloor(int floor) {
-        this.floor = floor;
-    }
-    
 }

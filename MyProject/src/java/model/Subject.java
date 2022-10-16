@@ -4,31 +4,39 @@
  */
 package model;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Trường Xuân
  */
 public class Subject {
-    private String suid;
-    private String suname;
+    private int id;
+    private String name;
+    private ArrayList<Group> groups = new ArrayList<>();
 
-    public Subject() {
+    public int getId() {
+        return id;
     }
 
-    public String getSuid() {
-        return suid;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public void setSuid(String suid) {
-        this.suid = suid;
+    public String getName() {
+        return name;
     }
 
-    public String getSuname() {
-        return suname;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public void setSuname(String suname) {
-        this.suname = suname;
+    public ArrayList<Group> getGroups() {
+        return groups;
     }
-    
+
+    public void setGroups(ArrayList<Group> groups) {
+        this.groups = groups;
+    }
+
 }

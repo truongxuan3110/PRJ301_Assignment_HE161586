@@ -4,40 +4,40 @@
  */
 package model;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Trường Xuân
  */
 public class TimeSlot {
-    private int tid;
-    private String tfrom;
-    private String tto;
+   private int id;
+    private String description;
+    private ArrayList<Session> sessions = new ArrayList<>();
 
-    public TimeSlot() {
+    public int getId() {
+        return id;
     }
 
-    public int getTid() {
-        return tid;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public void setTid(int tid) {
-        this.tid = tid;
+    public String getDescription() {
+        return description;
     }
 
-    public String getTfrom() {
-        return tfrom;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public void setTfrom(String tfrom) {
-        this.tfrom = tfrom;
+    public ArrayList<Session> getSessions() {
+        return sessions;
     }
 
-    public String getTto() {
-        return tto;
+    public void setSessions(ArrayList<Session> sessions) {
+        this.sessions = sessions;
     }
 
-    public void setTto(String tto) {
-        this.tto = tto;
-    }
     
 }

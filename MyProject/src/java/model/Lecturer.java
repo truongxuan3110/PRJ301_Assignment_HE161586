@@ -12,16 +12,70 @@ import java.util.ArrayList;
  * @author Trường Xuân
  */
 public class Lecturer {
-    private String lid;
-    private String lname;
-    private boolean lgender;
-    private Date ldob;
-    private String ladd;
-    private int lphone;
-    private String lemail;
+     private int id;
+     private String code;
+    private String name;
+    private boolean gender;
+    private Date dob;
+    private String add;
+    private String phone;
     private ArrayList<Group> groups = new ArrayList<>();
-    
-    public Lecturer() {
+    private ArrayList<Session> sessions = new ArrayList<>();
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public boolean isGender() {
+        return gender;
+    }
+
+    public void setGender(boolean gender) {
+        this.gender = gender;
+    }
+
+    public Date getDob() {
+        return dob;
+    }
+
+    public void setDob(Date dob) {
+        this.dob = dob;
+    }
+
+    public String getAdd() {
+        return add;
+    }
+
+    public void setAdd(String add) {
+        this.add = add;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public ArrayList<Group> getGroups() {
@@ -32,60 +86,13 @@ public class Lecturer {
         this.groups = groups;
     }
 
-    public String getLid() {
-        return lid;
+    public ArrayList<Session> getSessions() {
+        return sessions;
     }
 
-    public void setLid(String lid) {
-        this.lid = lid;
+    public void setSessions(ArrayList<Session> sessions) {
+        this.sessions = sessions;
     }
-
-    public String getLname() {
-        return lname;
-    }
-
-    public void setLname(String lname) {
-        this.lname = lname;
-    }
-
-    public boolean isLgender() {
-        return lgender;
-    }
-
-    public void setLgender(boolean lgender) {
-        this.lgender = lgender;
-    }
-
-    public Date getLdob() {
-        return ldob;
-    }
-
-    public void setLdob(Date ldob) {
-        this.ldob = ldob;
-    }
-
-    public String getLadd() {
-        return ladd;
-    }
-
-    public void setLadd(String ladd) {
-        this.ladd = ladd;
-    }
-
-    public int getLphone() {
-        return lphone;
-    }
-
-    public void setLphone(int lphone) {
-        this.lphone = lphone;
-    }
-
-    public String getLemail() {
-        return lemail;
-    }
-
-    public void setLemail(String lemail) {
-        this.lemail = lemail;
-    }
+    
     
 }

@@ -5,78 +5,95 @@
 package model;
 
 import java.sql.Date;
+import java.util.ArrayList;
 
 /**
  *
  * @author Trường Xuân
  */
 public class Student {
-    private String sid;
-    private String sname;
-    private boolean sgender;
-    private Date sdob;
-    private String sadd;
-    private int sphone;
-    private String semail;
+    private int id;
+    private String code;
+    private String name;
+    private boolean gender;
+    private Date dob;
+    private String add;
+    private String phone;
+    private ArrayList<Group> groups = new ArrayList<>();
+    private ArrayList<Attendance> attandances = new ArrayList<>();
 
-    public Student() {
+    public int getId() {
+        return id;
     }
 
-    public String getSid() {
-        return sid;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public void setSid(String sid) {
-        this.sid = sid;
+    public String getCode() {
+        return code;
     }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+    
 
     public String getName() {
-        return sname;
+        return name;
     }
 
-    public void setName(String sname) {
-        this.sname = sname;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public boolean isGender() {
-        return sgender;
+        return gender;
     }
 
-    public void setGender(boolean sgender) {
-        this.sgender = sgender;
+    public void setGender(boolean gender) {
+        this.gender = gender;
     }
 
-    public Date getSdob() {
-        return sdob;
+    public Date getDob() {
+        return dob;
     }
 
-    public void setSdob(Date sdob) {
-        this.sdob = sdob;
+    public void setDob(Date dob) {
+        this.dob = dob;
     }
 
-    public String getSadd() {
-        return sadd;
+    public String getAdd() {
+        return add;
     }
 
-    public void setSadd(String sadd) {
-        this.sadd = sadd;
+    public void setAdd(String add) {
+        this.add = add;
     }
 
-    public int getSphone() {
-        return sphone;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setSphone(int sphone) {
-        this.sphone = sphone;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
-    public String getSemail() {
-        return semail;
+    public ArrayList<Group> getGroups() {
+        return groups;
     }
 
-    public void setSemail(String semail) {
-        this.semail = semail;
+    public void setGroups(ArrayList<Group> groups) {
+        this.groups = groups;
+    }
+
+    public ArrayList<Attendance> getAttandances() {
+        return attandances;
+    }
+
+    public void setAttandances(ArrayList<Attendance> attandances) {
+        this.attandances = attandances;
     }
     
-    
+
 }
