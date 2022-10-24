@@ -4,24 +4,19 @@
  */
 package model;
 
+import java.util.Date;
+
 /**
  *
  * @author Trường Xuân
  */
-public class Attendance {
-    private int id;
+public class Attandance {
     private Session session;
     private Student student;
     private boolean present;
     private String description;
+    private Date record_time;
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public Session getSession() {
         return session;
@@ -54,5 +49,15 @@ public class Attendance {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    public Date getRecord_time() {
+        return record_time;
+    }
+
+    public void setRecord_time(Date record_time) {
+        this.record_time = record_time;
+    }
+    
+    
     
 }

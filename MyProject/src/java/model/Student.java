@@ -20,7 +20,7 @@ public class Student {
     private String add;
     private String phone;
     private ArrayList<Group> groups = new ArrayList<>();
-    private ArrayList<Attendance> attandances = new ArrayList<>();
+    private ArrayList<Attandance> attandances = new ArrayList<>();
 
     public int getId() {
         return id;
@@ -87,11 +87,11 @@ public class Student {
         this.groups = groups;
     }
 
-    public ArrayList<Attendance> getAttandances() {
+    public ArrayList<Attandance> getAttandances() {
         return attandances;
     }
 
-    public void setAttandances(ArrayList<Attendance> attandances) {
+    public void setAttandances(ArrayList<Attandance> attandances) {
         this.attandances = attandances;
     }
     
