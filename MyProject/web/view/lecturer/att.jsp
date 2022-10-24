@@ -30,7 +30,7 @@
         Date: ${requestScope.ses.date} - ${requestScope.ses.slot.description}<br/>
         Attended: <span style="color: red;"> ${requestScope.ses.attanded?"Yes":"No"} </span>
         
-        <form action="takeatt" method="POST">
+        <form action="takeatt" method="POST" align="center">
             <input type="hidden" name="sesid" value="${param.id}"/>
             <table align="center" style="width: 100%">
                 <thead style="background: #6b90da; box-shadow: 0px 2px #f5f5f5"  align="center">
@@ -48,7 +48,7 @@
                 <c:forEach items="${requestScope.ses.atts}" var="a" varStatus="loop">
                  <tr>
                     <td>${loop.index+1}</td>
-                    <td>${a.group.name}</td>
+                    <td>${requestScope.ses.group.name}</td>
                     <td>${a.student.code}
                     <input type="hidden" name="stdid" value="${a.student.id}"/>
                     </td>
@@ -70,6 +70,7 @@
                 </c:forEach>
             </tbody>
             </table>
+            <input type="submit" value="Save"/>
         </form>
     </body>
 </html>

@@ -159,9 +159,9 @@ public class SessionDBContext extends DBContext<Session> {
                     + "	,g.gid,g.gname\n"
                     + "	,r.rid,r.rname\n"
                     + "	,t.tid,t.[description] tdescription\n"
-                    + "	,l.lid,l.lname\n"
+                    + "	,l.lid,l.lname,l.lcode\n"
                     + "	,sub.subid,sub.subname\n"
-                    + "	,s.stdid,s.stdname\n"
+                    + "	,s.stdid,s.stdname,s.stdcode\n"
                     + "	,ISNULL(a.present,0) present, ISNULL(a.[description],'') [description]\n"
                     + "		FROM [Session] ses\n"
                     + "		INNER JOIN Room r ON r.rid = ses.rid\n"
@@ -193,6 +193,7 @@ public class SessionDBContext extends DBContext<Session> {
                     Lecturer l = new Lecturer();
                     l.setId(rs.getInt("lid"));
                     l.setName(rs.getString("lname"));
+                    l.setCode(rs.getString("lcode"));
                     ses.setLecturer(l);
 
                     Group g = new Group();
@@ -213,6 +214,7 @@ public class SessionDBContext extends DBContext<Session> {
                 Student s = new Student();
                 s.setId(rs.getInt("stdid"));
                 s.setName(rs.getString("stdname"));
+                s.setCode(rs.getString("stdcode"));
                 //read attandance
                 Attandance a = new Attandance();
                 a.setStudent(s);
