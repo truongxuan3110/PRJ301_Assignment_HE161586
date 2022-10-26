@@ -8,6 +8,10 @@
         <servlet-name>AttController</servlet-name>
         <servlet-class>controller.AttController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ReportController</servlet-name>
+        <servlet-class>controller.ReportController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LecturerTimetableController</servlet-name>
         <url-pattern>/lecturer/timetable</url-pattern>
@@ -15,6 +19,10 @@
     <servlet-mapping>
         <servlet-name>AttController</servlet-name>
         <url-pattern>/lecturer/takeatt</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ReportController</servlet-name>
+        <url-pattern>/lecturer/report</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

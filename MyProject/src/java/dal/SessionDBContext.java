@@ -169,8 +169,8 @@ public class SessionDBContext extends DBContext<Session> {
                     + "		INNER JOIN Lecturer l ON l.lid = ses.lid\n"
                     + "		INNER JOIN [Group] g ON g.gid = ses.gid\n"
                     + "		INNER JOIN [Subject] sub ON sub.subid = g.subid\n"
-                    + "		INNER JOIN [Student_Group] sg ON sg.gid = g.gid\n"
-                    + "		INNER JOIN [Student] s ON s.stdid = sg.stdid\n"
+                    + "		LEFT JOIN [Student_Group] sg ON sg.gid = g.gid\n"
+                    + "		LEFT JOIN [Student] s ON s.stdid = sg.stdid\n"
                     + "		LEFT JOIN Attandance a ON s.stdid = a.stdid AND ses.sesid = a.sesid\n"
                     + "WHERE ses.sesid = ?";
             PreparedStatement stm = connection.prepareStatement(sql);
@@ -211,6 +211,7 @@ public class SessionDBContext extends DBContext<Session> {
                     ses.setAttanded(rs.getBoolean("attanded"));
                 }
                 //read student
+                if(rs.getInt("stdid")!=0){
                 Student s = new Student();
                 s.setId(rs.getInt("stdid"));
                 s.setName(rs.getString("stdname"));
@@ -223,6 +224,7 @@ public class SessionDBContext extends DBContext<Session> {
                 a.setDescription(rs.getString("description"));
                 a.setRecord_time(rs.getTimestamp("record_time"));
                 ses.getAtts().add(a);
+                }
             }
             return ses;
         } catch (SQLException ex) {
@@ -236,4 +238,42 @@ public class SessionDBContext extends DBContext<Session> {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
+    public int getTotalSlotByGid(int gid){
+        try {
+            String sql = "Select COUNT(*) as total from Session where gid = ?";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setInt(1, gid);
+            ResultSet rs = stm.executeQuery();
+            int count = 0;
+            while (rs.next()) {
+                count = rs.getInt("total");
+            }
+            return count;
+        } catch (SQLException ex) {
+            Logger.getLogger(SessionDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return 0;
+    }
+    
+    public ArrayList<Session> listByGid(int gid){
+        ArrayList<Session> sess = null;
+        try {
+            String sql = "Select sesid FROM [Session] where gid=?";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setInt(1, gid);
+            ResultSet rs = stm.executeQuery();
+            if (rs != null) {
+                sess = new ArrayList<>();
+
+                while (rs.next()) {
+                    Session s = new Session();
+                    s.setId(rs.getInt("sesid"));
+                    sess.add(s);
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(StudentDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return sess;
+    }
 }
