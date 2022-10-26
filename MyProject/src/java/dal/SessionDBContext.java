@@ -162,7 +162,7 @@ public class SessionDBContext extends DBContext<Session> {
                     + "	,l.lid,l.lname,l.lcode\n"
                     + "	,sub.subid,sub.subname\n"
                     + "	,s.stdid,s.stdname,s.stdcode\n"
-                    + "	,ISNULL(a.present,0) present, ISNULL(a.[description],'') [description]\n"
+                    + "	,ISNULL(a.present,0) present, ISNULL(a.[description],'') [description], a.record_time\n"
                     + "		FROM [Session] ses\n"
                     + "		INNER JOIN Room r ON r.rid = ses.rid\n"
                     + "		INNER JOIN TimeSlot t ON t.tid = ses.tid\n"
@@ -221,6 +221,7 @@ public class SessionDBContext extends DBContext<Session> {
                 a.setSession(ses);
                 a.setPresent(rs.getBoolean("present"));
                 a.setDescription(rs.getString("description"));
+                a.setRecord_time(rs.getTimestamp("record_time"));
                 ses.getAtts().add(a);
             }
             return ses;

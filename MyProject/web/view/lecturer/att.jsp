@@ -21,13 +21,17 @@
                 <a href="#">logout</a> |
                 <span> CAMPUS: FPTU-Hòa Lạc</span>
             </div>
-            <span style="margin-left: 16px">Home | View Schedule</span>
+            <span style="margin-left: 16px">Home | 
+                <a href="timetable?lid=${requestScope.ses.lecturer.id}">View Schedule</a>
+            
+            </span>
         </div>
             
         Take attendance for Group: ${requestScope.ses.group.name} <br/>
         Subject: ${requestScope.ses.group.subject.name} <br/>
         Room: ${requestScope.ses.room.name} <br/>
-        Date: ${requestScope.ses.date} - ${requestScope.ses.slot.description}<br/>
+        Date: ${requestScope.ses.date} <br>
+        Time: ${requestScope.ses.slot.description}<br/>
         Attended: <span style="color: red;"> ${requestScope.ses.attanded?"Yes":"No"} </span>
         
         <form action="takeatt" method="POST" align="center">
