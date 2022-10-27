@@ -37,7 +37,7 @@
             <th>Name</th>
             <th>Percent</th>
             <c:forEach begin="1" end="${requestScope.total}" var="i">
-            <th>Slot</th>
+            <th>Slot ${i}</th>
             </c:forEach>
         </tr>
     </thead>

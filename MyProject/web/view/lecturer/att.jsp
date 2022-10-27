@@ -23,6 +23,7 @@
             </div>
             <span style="margin-left: 16px">Home | 
                 <a href="timetable?lid=${requestScope.ses.lecturer.id}">View Schedule</a>
+                 | <a href="report?gid=${requestScope.ses.group.id}">View Report</a>
             
             </span>
         </div>
