@@ -19,6 +19,7 @@ public class Lecturer {
     private Date dob;
     private String add;
     private String phone;
+    private Account username;
     private ArrayList<Group> groups = new ArrayList<>();
     private ArrayList<Session> sessions = new ArrayList<>();
 
@@ -76,6 +77,14 @@ public class Lecturer {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public Account getUsername() {
+        return username;
+    }
+
+    public void setUsername(Account username) {
+        this.username = username;
     }
 
     public ArrayList<Group> getGroups() {

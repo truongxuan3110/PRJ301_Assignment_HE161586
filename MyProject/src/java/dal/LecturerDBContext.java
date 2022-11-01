@@ -55,4 +55,21 @@ public class LecturerDBContext extends DBContext<Lecturer> {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
+    public Lecturer getByUsername(String username){
+     try {
+            String sql = "SELECT lid FROM Lecturer WHERE username = ?";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setString(1, username);
+            ResultSet rs = stm.executeQuery();
+            if(rs.next())
+            {
+                Lecturer l = new Lecturer();
+                l.setId(rs.getInt("lid"));
+                return l;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(LecturerDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+}
 }

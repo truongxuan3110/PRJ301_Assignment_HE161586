@@ -25,7 +25,7 @@
         </div>
         <div style="background: #f5f5f5; padding-top: 10px; padding-bottom: 10px" items="${requestScope.lecturer}" var="l">
             <div style="float: right; margin-right: 16px;">
-                <a href="#">logout</a> |
+                <a href="logout">logout</a> |
                 <span> CAMPUS: FPTU-Hòa Lạc</span>
             </div>
             <span style="margin-left: 16px">Home | View Schedule</span>
