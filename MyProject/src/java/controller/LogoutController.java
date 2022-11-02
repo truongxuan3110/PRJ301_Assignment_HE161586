@@ -6,16 +6,11 @@
 package controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-/**
- *
- * @author sonnt
- */
 public class LogoutController extends HttpServlet {
    
     /** 
@@ -27,7 +22,7 @@ public class LogoutController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        request.getSession().setAttribute("account", null);
+        request.getSession().setAttribute("lecturer", null);
         request.getRequestDispatcher("login.jsp").forward(request, response);
     } 
 

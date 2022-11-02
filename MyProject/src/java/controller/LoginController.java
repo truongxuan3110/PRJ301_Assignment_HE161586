@@ -7,7 +7,6 @@ package controller;
 import dal.AccountDBContext;
 import dal.LecturerDBContext;
 import java.io.IOException;
-import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -51,14 +50,13 @@ public class LoginController extends HttpServlet {
             request.setAttribute("error", "Account is not exist!");
             request.getRequestDispatcher("login.jsp").forward(request, response);
         } else {
-            request.getSession().setAttribute("account", account);
             LecturerDBContext ldb = new LecturerDBContext();
             Lecturer lecturer = ldb.getByUsername(username);
             if (lecturer != null) {
                 request.getSession().setAttribute("lecturer", lecturer);
                 response.sendRedirect("lecturer/timetable?lid=" + lecturer.getId());
             } else {
-                request.setAttribute("error", "Login Failed!");
+                request.setAttribute("error", "Access Denied!");
                 request.getRequestDispatcher("login.jsp").forward(request, response);
             }
         }

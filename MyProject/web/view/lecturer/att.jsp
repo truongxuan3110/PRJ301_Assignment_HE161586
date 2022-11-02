@@ -18,7 +18,7 @@
         </div>
         <div style="background: #f5f5f5; padding-top: 10px; padding-bottom: 10px" items="${requestScope.lecturer}" var="l">
             <div style="float: right; margin-right: 16px;">
-                <a href="logout">logout</a> |
+                <a href="../logout">logout</a> |
                 <span> CAMPUS: FPTU-Hòa Lạc</span>
             </div>
             <span style="margin-left: 16px">Home | 
@@ -33,7 +33,7 @@
         Room: ${requestScope.ses.room.name} <br/>
         Date: ${requestScope.ses.date} <br>
         Time: ${requestScope.ses.slot.description}<br/>
-        Attended: <span style="color: red;"> ${requestScope.ses.attanded?"Yes":"No"} </span>
+        Attended: <span style="color: ${requestScope.ses.attanded?"green":"red"};"> ${requestScope.ses.attanded?"Yes":"No"} </span>
         
         <form action="takeatt" method="POST" align="center">
             <input type="hidden" name="sesid" value="${param.id}"/>
