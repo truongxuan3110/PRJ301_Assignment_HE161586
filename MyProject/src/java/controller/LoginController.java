@@ -51,6 +51,7 @@ public class LoginController extends HttpServlet {
             request.setAttribute("error", "Account is not exist!");
             request.getRequestDispatcher("login.jsp").forward(request, response);
         } else {
+            request.getSession().setAttribute("account", account);
             LecturerDBContext ldb = new LecturerDBContext();
             Lecturer lecturer = ldb.getByUsername(username);
             if (lecturer != null) {
