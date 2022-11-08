@@ -9,6 +9,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import model.Attandance;
 import model.Session;
@@ -31,11 +32,16 @@ public class AttController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        int sesid = Integer.parseInt(request.getParameter("id"));
-        SessionDBContext sesDB = new SessionDBContext();
-        Session ses = sesDB.get(sesid);
-        request.setAttribute("ses", ses);
-        request.getRequestDispatcher("../view/lecturer/att.jsp").forward(request, response);
+        HttpSession session = request.getSession();
+        if (session.getAttribute("lecturer") == null) {
+            response.sendRedirect("../login.jsp");
+        } else {
+            int sesid = Integer.parseInt(request.getParameter("id"));
+            SessionDBContext sesDB = new SessionDBContext();
+            Session ses = sesDB.get(sesid);
+            request.setAttribute("ses", ses);
+            request.getRequestDispatcher("../view/lecturer/att.jsp").forward(request, response);
+        }
     }
 
     /**
@@ -52,20 +58,20 @@ public class AttController extends HttpServlet {
         Session ses = new Session();
         ses.setId(Integer.parseInt(request.getParameter("sesid")));
         String[] stdids = request.getParameterValues("stdid");
-        if(stdids != null){
-        for (String stdid : stdids) {
-            Attandance a = new Attandance();
-            Student s = new Student();
-            a.setStudent(s);
-            a.setDescription(request.getParameter("description"+stdid));
-            a.setPresent(request.getParameter("present"+stdid).equals("present"));
-            s.setId(Integer.parseInt(stdid));
-            ses.getAtts().add(a);
-        }
+        if (stdids != null) {
+            for (String stdid : stdids) {
+                Attandance a = new Attandance();
+                Student s = new Student();
+                a.setStudent(s);
+                a.setDescription(request.getParameter("description" + stdid));
+                a.setPresent(request.getParameter("present" + stdid).equals("present"));
+                s.setId(Integer.parseInt(stdid));
+                ses.getAtts().add(a);
+            }
         }
         SessionDBContext db = new SessionDBContext();
         db.update(ses);
-        response.sendRedirect("takeatt?id="+ses.getId());
+        response.sendRedirect("takeatt?id=" + ses.getId());
     }
 
     /**

@@ -75,7 +75,7 @@ public class AttandanceDBContext extends DBContext<Attandance> {
     }
     public Map<Integer, Double> getNOAbsent(int gid) {
         Map<Integer, Double> list = new HashMap<>();
-
+        SessionDBContext ses = new SessionDBContext();
         try {
             String sql = "select s.stdid, sum(case present when 0 then 1 else 0 end) as [NumberOfAbsent]\n"
                     + "from Session ses inner join [Group] g on ses.gid = g.gid\n"
@@ -89,7 +89,7 @@ public class AttandanceDBContext extends DBContext<Attandance> {
             ps.setInt(1, gid);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                list.put(rs.getInt("stdid"), Math.round((rs.getInt("NumberOfAbsent") * 100.0 / 30) * 10) / 10.0);
+                list.put(rs.getInt("stdid"), Math.round((rs.getInt("NumberOfAbsent") * 100.0 / ses.getTotalSlotByGid(gid)) * 10) / 10.0);
             }
             return list;
         } catch (SQLException e) {

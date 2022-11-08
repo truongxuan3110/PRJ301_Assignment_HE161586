@@ -41,27 +41,31 @@ public class ReportController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        if (session.getAttribute("lecturer") == null) {
+            response.sendRedirect("../login.jsp");
+        } else {
+            if (request.getParameter("gid") != null) {
+                int gid = Integer.parseInt(request.getParameter("gid"));
+                SessionDBContext sesDB = new SessionDBContext();
+                StudentDBContext stdDB = new StudentDBContext();
+                ArrayList<Session> sessionList = sesDB.listByGid(gid);
+                ArrayList<Student> stds = stdDB.listbyGid(gid);
 
-        if (request.getParameter("gid") != null) {
-            int gid = Integer.parseInt(request.getParameter("gid"));
-            SessionDBContext sesDB = new SessionDBContext();
-            StudentDBContext stdDB = new StudentDBContext();
-            ArrayList<Session> sessionList = sesDB.listByGid(gid);
-            ArrayList<Student> stds = stdDB.listbyGid(gid);
+                AttandanceDBContext atd = new AttandanceDBContext();
 
-            AttandanceDBContext atd = new AttandanceDBContext();
+                if (stds != null && sessionList != null) {
+                    request.setAttribute("studentList", stds);
+                    request.setAttribute("sessionList", sessionList);
+                }
+                int total = sesDB.getTotalSlotByGid(gid);
+                request.setAttribute("total", total);
+                Map<Integer, Double> map = atd.getNOAbsent(gid);
 
-            if (stds != null && sessionList != null) {
-                request.setAttribute("studentList", stds);
-                request.setAttribute("sessionList", sessionList);
+                request.setAttribute("map", map);
+
+                request.getRequestDispatcher("../view/lecturer/report.jsp").forward(request, response);
             }
-            int total = sesDB.getTotalSlotByGid(gid);
-            request.setAttribute("total", total);
-            Map<Integer, Double> map = atd.getNOAbsent(gid);
-
-            request.setAttribute("map", map);
-
-            request.getRequestDispatcher("../view/lecturer/report.jsp").forward(request, response);
         }
     }
 
