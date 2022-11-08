@@ -76,11 +76,5 @@ public class Attandance {
         this.record_time = record_time;
     }
 
-    @Override
-    public String toString() {
-        return "Attandance{" + "session=" + session + ", student=" + student + ", present=" + present + ", description=" + description + ", record_time=" + record_time + '}';
-    }
-    
-    
     
 }

@@ -73,37 +73,6 @@ public class AttandanceDBContext extends DBContext<Attandance> {
         }
         return att;
     }
-
-    public Attandance filterAttendance(int sesid, int stdid) {
-        try {
-            String sql = "select a.sesid, a.stdid, a.present, a.description, a.record_time from "
-                    + "Attandance a where sesid = ? and stdid = ?";
-            PreparedStatement ps = connection.prepareStatement(sql);
-            ps.setInt(1, sesid);
-            ps.setInt(2, stdid);
-            ResultSet rs = ps.executeQuery();
-            if (rs.next()) {
-                Attandance a = new Attandance();
-                Session ses = new Session();
-                ses.setId(rs.getInt("sesid"));
-
-                Student s = new Student();
-                s.setId(rs.getInt("stdid"));
-
-                a.setSession(ses);
-                a.setStudent(s);
-                a.setPresent(rs.getBoolean("present"));
-                a.setDescription(rs.getString("description"));
-                a.setRecord_time(rs.getString("record_time"));
-                System.out.println(a.toString());
-                return a;
-            }
-        } catch (SQLException e) {
-            Logger.getLogger(SessionDBContext.class.getName()).log(Level.SEVERE, null, e);
-        }
-        return null;
-    }
-    
     public Map<Integer, Double> getNOAbsent(int gid) {
         Map<Integer, Double> list = new HashMap<>();
 

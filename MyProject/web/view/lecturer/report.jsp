@@ -11,7 +11,7 @@
 <%@ page import="model.Session" %>
 <%@ page import="model.Attandance" %>
 <%@ page import="dal.AttandanceDBContext" %>
-
+<%@ page import="pageNumber.*, java.util.*, java.io.*" %>
 <!DOCTYPE html>
 <html>
     <head>
