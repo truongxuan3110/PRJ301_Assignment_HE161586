@@ -38,11 +38,11 @@
                     <th>CODE</th>
                     <th>Name</th>
                     <th>Percent</th>
-                    <% int j=1;%>
-                    <c:forEach items="${requestScope.sessionList}" var="i">
-                    
-                    <th><a href="takeatt?id=${i.getId()}">Slot <%=j%></a></th>
-                        <% j++; %>
+                        <% int j=1;%>
+                        <c:forEach items="${requestScope.sessionList}" var="i">
+
+                        <th><a href="takeatt?id=${i.getId()}">Slot <%=j%></a></th>
+                            <% j++; %>
                         </c:forEach>
                 </tr>
             </thead>
@@ -75,9 +75,12 @@
                     %>
                     <td><font color=<%=att.isPresent() == true ? "green" : "red"%>><%=att.isPresent() == true ? "P" : "A"%></font></td>    
                         <%          }
-                                }
-                            }
-                        %>
+                                else{%> 
+                    <td>-</td>
+                                    <%}
+                                          }
+                                           }
+                    %>
                 </tr>
                 <%
                         }

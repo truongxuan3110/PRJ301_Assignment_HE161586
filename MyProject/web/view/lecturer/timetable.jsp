@@ -28,7 +28,7 @@
         <div align="center">
             <h2>Timetable</h2>
             Lecturer: <input type="text" readonly="readonly" value="${requestScope.lecturer.code}"/>
-            <form id="form" action="timetable" method="GET" onsubmit="return validate();">
+            <form action="timetable" method="GET" onsubmit="return validate();">
                 <input type="hidden" name="lid" value="${param.lid}"/>
                 From: <input id="from" type="date" name="from" value="${requestScope.from}"/>
                 To: <input id="to" type="date" name="to" value="${requestScope.to}"/>
@@ -85,7 +85,6 @@
         </div>
     </body>
     <script>
-
             function validate() {
                 var from = document.getElementById('from').value;
                 var to = document.getElementById('to').value;

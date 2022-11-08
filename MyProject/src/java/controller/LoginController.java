@@ -47,7 +47,7 @@ public class LoginController extends HttpServlet {
         AccountDBContext db = new AccountDBContext();
         Account account = db.get(username, password);
         if (account == null) {
-            request.setAttribute("error", "Account is not exist!");
+            request.setAttribute("error", "Account does not exist!");
             request.getRequestDispatcher("login.jsp").forward(request, response);
         } else {
             LecturerDBContext ldb = new LecturerDBContext();
