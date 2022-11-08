@@ -15,7 +15,17 @@ public class Attandance {
     private Student student;
     private boolean present;
     private String description;
-    private Date record_time;
+    private String record_time;
+
+    public Attandance() {
+    }
+
+    public Attandance(Session session, Student student, boolean present, String description) {
+        this.session = session;
+        this.student = student;
+        this.present = present;
+        this.description = description;
+    }
 
 
     public Session getSession() {
@@ -50,12 +60,25 @@ public class Attandance {
         this.description = description;
     }
 
-    public Date getRecord_time() {
+    public String getRecord_time() {
         return record_time;
     }
 
-    public void setRecord_time(Date record_time) {
+    public void setRecord_time(String record_time) {
         this.record_time = record_time;
+    }
+
+    public Attandance(Session session, Student student, boolean present, String description, String record_time) {
+        this.session = session;
+        this.student = student;
+        this.present = present;
+        this.description = description;
+        this.record_time = record_time;
+    }
+
+    @Override
+    public String toString() {
+        return "Attandance{" + "session=" + session + ", student=" + student + ", present=" + present + ", description=" + description + ", record_time=" + record_time + '}';
     }
     
     

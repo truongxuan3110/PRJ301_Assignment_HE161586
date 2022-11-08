@@ -222,7 +222,7 @@ public class SessionDBContext extends DBContext<Session> {
                 a.setSession(ses);
                 a.setPresent(rs.getBoolean("present"));
                 a.setDescription(rs.getString("description"));
-                a.setRecord_time(rs.getTimestamp("record_time"));
+                a.setRecord_time(rs.getString("record_time"));
                 ses.getAtts().add(a);
                 }
             }
@@ -258,7 +258,7 @@ public class SessionDBContext extends DBContext<Session> {
     public ArrayList<Session> listByGid(int gid){
         ArrayList<Session> sess = null;
         try {
-            String sql = "Select sesid FROM [Session] where gid=?";
+            String sql = "Select sesid, lid FROM [Session] where gid=?";
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setInt(1, gid);
             ResultSet rs = stm.executeQuery();
@@ -268,6 +268,9 @@ public class SessionDBContext extends DBContext<Session> {
                 while (rs.next()) {
                     Session s = new Session();
                     s.setId(rs.getInt("sesid"));
+                    Lecturer l = new Lecturer();
+                    l.setId(rs.getInt("lid"));
+                    s.setLecturer(l);
                     sess.add(s);
                 }
             }

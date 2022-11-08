@@ -32,47 +32,54 @@
         </div>
         <table align="center" style="width: 100%">
             <thead style="background: #6b90da; box-shadow: 0px 2px #f5f5f5" align="center">
-        <tr>
-            <th>CODE</th>
-            <th>Name</th>
-            <th>Percent</th>
-            <c:forEach begin="1" end="${requestScope.total}" var="i">
-            <th>Slot ${i}</th>
-            </c:forEach>
-        </tr>
-    </thead>
-    <tbody align="center">
-        <%
-            if(request.getAttribute("studentList") != null){
-                ArrayList<Student> students = new ArrayList<Student>();
-                students = (ArrayList<Student>)request.getAttribute("studentList");
-                for(Student s :students){
-        %>
+                <tr>
+                    <th>CODE</th>
+                    <th>Name</th>
+                    <th>Percent</th>
+                        <c:forEach begin="1" end="${requestScope.total}" var="i">
+                        <th>Slot ${i}</th>
+                        </c:forEach>
+                </tr>
+            </thead>
+            <tbody align="center">
 
-        <tr>
-            <td><%=s.getCode()%></td>
-            <td><%=s.getName()%></td>
-            <td>0%</td>
-            <%
-                if(request.getAttribute("sessionList") != null){
-                    AttandanceDBContext attDB = new AttandanceDBContext();
-                    ArrayList<Session> sessionList = new ArrayList<Session>();
-                    sessionList = (ArrayList<Session>) request.getAttribute("sessionList");
-                    for(Session ss :sessionList){
-                        Attandance att = attDB.getBySesidAndStdid(ss.getId(), s.getId());
-                        if(att != null){
-            %>
-                <td><font color=<%=att.isPresent() == true ? "green" : "red"%>><%=att.isPresent() == true ? "P" : "A"%></font></td>    
-            <%          }
+                <%
+        if(request.getAttribute("studentList") != null){
+            ArrayList<Student> students = new ArrayList<Student>();
+            students = (ArrayList<Student>)request.getAttribute("studentList");
+            Map<Integer, Double> map = (Map<Integer, Double>)request.getAttribute("map");
+            for(Student s :students){
+                %>
+                <tr>
+                    <td><%=s.getCode()%></td>
+                    <td><%=s.getName()%></td>
+                    <% for (Map.Entry<Integer, Double> m : map.entrySet()) {
+                        if(m.getKey() == s.getId()){
+                    %>
+                    <td><%=m.getValue()%>%</td>
+
+                    <%      }
+                        }
+                        if(request.getAttribute("sessionList") != null){
+                            AttandanceDBContext attDB = new AttandanceDBContext();
+                            ArrayList<Session> sessionList = new ArrayList<Session>();
+                            sessionList = (ArrayList<Session>) request.getAttribute("sessionList");
+                            for(Session ss :sessionList){
+                                Attandance att = attDB.getBySesidAndStdid(ss.getId(), s.getId());
+                                if(att != null){
+                    %>
+                    <td><font color=<%=att.isPresent() == true ? "green" : "red"%>><%=att.isPresent() == true ? "P" : "A"%></font></td>    
+                        <%          }
+                                }
+                            }
+                        %>
+                </tr>
+                <%
+                        }
                     }
-                }
-            %>
-        </tr>
-        <%
-                }
-            }
-        %>
-    </tbody>
-</table>
-</body>
+                %>
+
+            </tbody>
+        </table>
+    </body>
 </html>

@@ -23,6 +23,20 @@ public class Student {
     private ArrayList<Attandance> attandances = new ArrayList<>();
     private Account account;
 
+    public Student() {
+    }
+
+    public Student(int id, String code, String name, boolean gender, Date dob, String add, String phone, Account account) {
+        this.id = id;
+        this.code = code;
+        this.name = name;
+        this.gender = gender;
+        this.dob = dob;
+        this.add = add;
+        this.phone = phone;
+        this.account = account;
+    }
+
     public int getId() {
         return id;
     }

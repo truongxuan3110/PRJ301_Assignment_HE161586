@@ -54,7 +54,9 @@
 
                                 </form>
                                 <c:if test="${requestScope.error!=null}">
+                                    <font color="red">
                                     ${requestScope.error}
+                                    </font>
                                 </c:if>
                                 </body>
                                 </html>

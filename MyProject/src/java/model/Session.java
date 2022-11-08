@@ -22,6 +22,22 @@ public class Session {
     private int index;
     private boolean attanded;
 
+    public Session(int id, Group group, Room room, Lecturer lecturer, TimeSlot slot, Date date, int index, boolean attanded) {
+        this.id = id;
+        this.group = group;
+        this.room = room;
+        this.lecturer = lecturer;
+        this.slot = slot;
+        this.date = date;
+        this.index = index;
+        this.attanded = attanded;
+    }
+
+    public Session() {
+    }
+    
+    
+
     public int getId() {
         return id;
     }

@@ -4,6 +4,7 @@
  */
 package controller;
 
+import dal.AttandanceDBContext;
 import dal.SessionDBContext;
 import dal.StudentDBContext;
 import jakarta.servlet.ServletException;
@@ -12,9 +13,16 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import model.Attandance;
 import model.Session;
 import model.Student;
-
+import jakarta.servlet.*;
+import jakarta.servlet.http.*;
+import jakarta.servlet.annotation.*;
+import java.io.IOException;
+import java.io.PrintWriter;
 /**
  *
  * @author Trường Xuân
@@ -40,15 +48,39 @@ public class ReportController extends HttpServlet {
             ArrayList<Session> sessionList = sesDB.listByGid(gid);
             ArrayList<Student> stds = stdDB.listbyGid(gid);
             
-            if(stds != null && sessionList != null){
+                    AttandanceDBContext atd = new AttandanceDBContext();
+            
+            if (stds != null && sessionList != null) {
                 request.setAttribute("studentList", stds);
                 request.setAttribute("sessionList", sessionList);
             }
             int total = sesDB.getTotalSlotByGid(gid);
             request.setAttribute("total", total);
+            Map<Integer, Double> map = atd.getNOAbsent(gid);
+
+//            for (Student s : stds) {
+//                double percent = 0;
+//                int count = 0;
+//                for (Session ss : sessionList) {
+//                    Attandance att = attDB.filterAttendance(ss.getId(), s.getId());
+//                    if(att==null){response.getWriter().println("null");}
+//                    //response.getWriter().println(s.getId()+" "+ss.getId());
+////                    if (!att.isPresent()) {
+////                        count++;
+////                    }
+//                }
+//                percent = count / 30 * 100;
+//                map.put(s.getId(), Math.round(percent) / 10.0);
+//            }
+//            for (Map.Entry<Integer, Double> m : map.entrySet()) {
+//                response.getWriter().println(m.getKey() + " " + m.getValue());
+//            }
+            request.setAttribute("map", map);
+
             request.getRequestDispatcher("../view/lecturer/report.jsp").forward(request, response);
         }
     }
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -60,5 +92,4 @@ public class ReportController extends HttpServlet {
             throws ServletException, IOException {
         processRequest(request, response);
     }
-
 }
