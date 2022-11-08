@@ -28,11 +28,11 @@
         <div align="center">
             <h2>Timetable</h2>
             Lecturer: <input type="text" readonly="readonly" value="${requestScope.lecturer.code}"/>
-            <form action="timetable" method="GET">
+            <form name="datepicker" onsubmit="return validate()">
                 <input type="hidden" name="lid" value="${param.lid}"/>
-                From: <input type="date" name="from" value="${requestScope.from}"/>
-                To: <input type="date" name="to" value="${requestScope.to}"/>
-                <input type="submit" value="View"/> 
+                From: <input type="date" name="from" value="${requestScope.from}" onchange="return validate()"/>
+                To: <input type="date" name="to" value="${requestScope.to}" onchange="return validate()"/>
+                <input name="submit" type="submit" value="View"/> 
             </form><br>
             <table align="center" style="width: 100%">
                 <thead style="background: #6b90da; box-shadow: 0px 2px #f5f5f5" align="center">
@@ -84,4 +84,22 @@
             </table>
         </div>
     </body>
+    <script>
+        function validate(){
+            var from = document.forms['datepicker']['from'].value;
+            var to = document.forms['datepicker']['to'].value;
+            var fromDate = new Date(from);
+            var toDate = new Date(to);
+            if(from !== undefined && from !== null && to !== undefined && to !== null){
+                if(from > to){
+                    alert("lon hon roi");
+                    document.forms['datepicker']['submit'].addEventListener("click", function(e){
+                        alert("lon hon roi, hay thu lai");
+                        e.preventDefault();
+                    });
+                }
+            }
+        }
+    </script>
+        
 </html>

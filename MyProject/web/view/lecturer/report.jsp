@@ -28,7 +28,9 @@
                 <a href="../logout">logout</a> |
                 <span> CAMPUS: FPTU-Hòa Lạc</span>
             </div>
-            <span style="margin-left: 16px">Home | View Schedule</span>
+            <span style="margin-left: 16px">Home | 
+                <a href="timetable?lid=${sessionScope.lecturer.getId()}">View Schedule</a>
+            </span>
         </div>
         <table align="center" style="width: 100%">
             <thead style="background: #6b90da; box-shadow: 0px 2px #f5f5f5" align="center">
@@ -36,8 +38,11 @@
                     <th>CODE</th>
                     <th>Name</th>
                     <th>Percent</th>
-                        <c:forEach begin="1" end="${requestScope.total}" var="i">
-                        <th>Slot ${i}</th>
+                    <% int j=1;%>
+                    <c:forEach items="${requestScope.sessionList}" var="i">
+                    
+                    <th><a href="takeatt?id=${i.getId()}">Slot <%=j%></a></th>
+                        <% j++; %>
                         </c:forEach>
                 </tr>
             </thead>
